@@ -1,5 +1,9 @@
-!pip install python-binance
-!pip install coinbase
+import os
+
+os.system("pip install python-binance")
+os.system("pip install coinbase")
+#!pip install python-binance
+#!pip install coinbase
 
 
 from binance import Client as cb, ThreadedWebsocketManager, ThreadedDepthCacheManager # api for binance
