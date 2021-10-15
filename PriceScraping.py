@@ -68,7 +68,29 @@ app = Flask(__name__)
 
 @app.route("/")
 def home(): # Wrote this quickly in one line, would normally write this in an html file instead
-    str = "<h1>Bitcoin and Ethereum Prices on Binance and Coinbase<h1> <div> <table> <tr> <th>Exchange</th> <th> Bitcoin Price (USD)</th> <th> Ethereum Price (USD)</th> </tr> <tr>  <td>Binance</td> <td>$" + get_price1B() + "</td> <td>$" + get_price1E() + " </td> </tr> <tr> <td> Coinbase</td> <td>$" + get_price2B() + "</td> <td>$" + get_price2E() + " </td> </tr>  </table></div> <div> <h2>Recommendations:</h2> <p>Bitcoin:&emsp;" + recommendBTC() + "<br>Ethereum:&emsp;" + recommendETH() + " </p>  </div>"
+    
+    binBH = None
+    coinBH = None
+    binEH = None
+    coinEH = None
+    if get_price1B() > get_price2B():
+        coinBH = '<span style="background-color:#00FF00">' + get_price2B() + '</span>'
+        binBH = '<span style="background-color:#FF0000">' + get_price1B() + '</span>'
+    else:
+        coinBH = '<span style="background-color:#00FF00">' + get_price2B() + '</span>'
+        binBH = '<span style="background-color:#FF0000">' + get_price1B() + '</span>'
+        
+    if get_price1E() > get_price2E():
+        coinEH = '<span style="background-color:#FF0000">' + get_price2E() + '</span>'
+        binEH = '<span style="background-color:#00FF00">' + get_price1E() + '</span>'
+    else:
+        coinEH = '<span style="background-color:#FF0000">' + get_price2E() + '</span>'
+        binEH = '<span style="background-color:#00FF00">' + get_price1E() + '</span>'
+        
+    
+    str = '<h1>Bitcoin and Ethereum Prices on Binance and Coinbase (green indicates price to buy and red indicates price to sell on the different exchanges)<h1>  <div> <table> <tr> <th>Exchange</th> <th> Bitcoin Price (USD)</th> <th> Ethereum Price (USD)</th> </tr> <tr>  <td>Binance</td> <td>$' + binBH + '</td> <td>$' + binEH + ' </td> </tr> <tr> <td> Coinbase</td> <td>$' + coinBH + '</td> <td>$' + coinEH + ' </td> </tr>  </table></div> <div> <h2>Recommendations:</h2> <p>Bitcoin:&emsp;' + recommendBTC() + '<br>Ethereum:&emsp;' + recommendETH() + ' </p>  </div> '
+    
+    
     return str
 
 
