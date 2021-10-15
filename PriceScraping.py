@@ -1,7 +1,9 @@
-import os
+#import os
 
-os.system("pip install python-binance")
-os.system("pip install coinbase")
+#os.system("pip install python-binance") # Added these for convenience but commented them out just in case people would like to manually install python-binance and coinbase
+#os.system("pip install coinbase")
+
+
 #!pip install python-binance
 #!pip install coinbase
 
